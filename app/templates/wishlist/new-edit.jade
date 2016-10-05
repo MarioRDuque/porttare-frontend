@@ -1,0 +1,52 @@
+ion-modal-view.wishlist-page
+  ion-header-bar.bar.bar-header.bar-light.bar-wishlist-header(
+    align-title="center"
+  )
+    div(ng-hide="wishlistsVm.wishlist.id").title {{::("wishlist.titleNew"|translate)}}
+    div(ng-show="wishlistsVm.wishlist.id").title {{::("wishlist.titleEdit"|translate)}}
+    div.buttons
+      button.button.ion-close.button-clear(
+        ng-click="wishlistsVm.closeModal('main')"
+      )
+  ion-content.resource-form
+    form(
+      name="form"
+      novalidate
+    )
+      .list.list-inset
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("wishlist.listName"|translate)}}
+          input(
+            type="text"
+            ng-model="wishlistsVm.wishlist.nombre"
+          )
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("wishlist.items"|translate)}}
+          .row-wishlist-action
+            button(
+              ng-click="wishlistsVm.showModal('items')"
+            ).button-text-yellow {{::("wishlist.buttonAddItems"|translate)}}
+        show-error(array-messages="")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("wishlist.dateDelivery"|translate)}}
+          .row-wishlist-action
+            button.button-text-yellow {{::("wishlist.buttonAddDate"|translate)}}
+        show-error(array-messages="")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("wishlist.shareWith"|translate)}}
+          .row-wishlist-action
+            button.button-text-yellow {{::("wishlist.buttonShare"|translate)}}
+        show-error(array-messages="")
+
+
+      .bar.bar-footer.footer-wishlist-container
+        button.button-secondary-yellow(
+          type="submit"
+        ) {{::("wishlist.save"|translate)}}
+        button.button-secondary-red(
+          type="button"
+        ) {{::("wishlist.remove"|translate)}}

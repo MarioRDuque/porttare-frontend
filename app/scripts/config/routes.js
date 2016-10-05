@@ -240,6 +240,29 @@ function routes($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent@provider': {}
     }
+  })
+  .state('app.wishlist', {
+    url: '/wishlist',
+    abstract: true
+  })
+  .state('app.wishlist.index', {
+    url: '/',
+    views: {
+      'menuContent@app': {
+        templateUrl: 'templates/wishlist/wishlists.html',
+        controller: 'WishlistsController',
+        controllerAs: 'wishlistsVm',
+        resolve: {
+          data: function ($ionicLoading, $stateParams, $ionicPopup, WishlistsService) {
+            $ionicLoading.show({
+              template: '{{::("globals.loading"|translate)}}'
+            });
+            $ionicLoading.hide();
+            return WishlistsService.getWishlists();
+          }
+        }
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise(function ($injector, $location) {

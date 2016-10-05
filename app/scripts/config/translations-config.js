@@ -22,6 +22,7 @@
         location: 'Ubicación',
         provider: 'Proveedor',
         products: 'Productos',
+        wishlist: 'Wishlist',
         logout: 'Cerrar sesión'
       },
       provider: {
@@ -123,6 +124,26 @@
         direccion: 'Dirección',
         telefono: 'Teléfono',
         email: 'email'
+      },
+      wishlist: {
+        wishlists: 'Listas de deseos',
+        searchBox: 'Buscar lista',
+        new: 'Nueva lista',
+        id: 'id',
+        name: 'Nombre de la lista',
+        edit: 'Ver lista',
+        titleNew: 'Nueva lista',
+        titleEdit: 'Editar lista',
+        listName: 'Nombre de la lista',
+        items: 'Items',
+        dateDelivery: 'Fecha y hora de entrega',
+        shareWith: 'Compartir lista con',
+        save: 'Guardar lista',
+        remove: 'Eliminar lista',
+        buttonAddItems: 'Agregar ítems +',
+        buttonAddDate: 'Agregar hora y fecha +',
+        buttonShare: 'Escoger usuario +',
+        titleSelectItems: 'Seleccionar Items'
       },
       password: {
         updatePassword: 'Actualizar contraseña',

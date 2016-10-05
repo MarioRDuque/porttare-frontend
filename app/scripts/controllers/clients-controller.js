@@ -22,6 +22,8 @@
     ];
     clientsVm.query = '';
     var selectedClientIndex;
+    var modalId = 'clientModal';
+
     getClients();
 
     function getClients() {
@@ -100,6 +102,7 @@
 
     function showNewModal() {
       ModalService.showModal({
+        id: modalId,
         parentScope: $scope,
         fromTemplateUrl: 'templates/client/new-edit.html'
       });
@@ -112,7 +115,7 @@
     }
 
     function closeModal() {
-      ModalService.closeModal();
+      ModalService.closeModal(modalId);
       selectedClientIndex = null;
       clientsVm.client = null;
       clientsVm.messages = {};

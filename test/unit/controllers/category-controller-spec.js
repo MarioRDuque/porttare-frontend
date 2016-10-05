@@ -15,24 +15,25 @@
           provider_profiles: []
         }
       });
+      $provide.value('APP', {
+        defaultSlickConfig: {}
+      });
     }));
 
     beforeEach(inject(function (_$rootScope_,
-        _$controller_,
-        data) {
+                                _$controller_,
+                                data,
+                                APP) {
         $scope = _$rootScope_.$new();
         $controller = _$controller_;
         resolve = data;
+        dependencies = {
+          data: resolve,
+          APP: APP
+        };
+        ctrl = $controller('CategoryController', dependencies);
       })
     );
-
-    beforeEach(function () {
-      dependencies = {
-        data: resolve
-      };
-
-      ctrl = $controller('CategoryController', dependencies);
-    });
 
     describe('on init', function () {
       it('category should be object', function () {

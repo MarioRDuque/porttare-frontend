@@ -18,6 +18,17 @@
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
+.common-button-transparent {
+  background-color: transparent;
+  height: 2.5em;
+  line-height: normal;
+  margin: 0 0.5em;
+  padding: 0 1em;
+  text-align: center;
+  text-transform: uppercase;
+  width: auto;
+}
+
 .button-primary,
 .button-primary.button-full {
   @extend .common-button;
@@ -25,6 +36,32 @@
   &.spaced {
     margin-top: 30px;
   }
+}
+
+.button-secondary-yellow {
+  @extend .common-button-transparent;
+  border: 3px solid $base-yellow;
+  color: $base-yellow;
+}
+
+.button-secondary-red {
+  @extend .common-button-transparent;
+  border: 3px solid $button-red;
+  color: $button-red;
+}
+
+.button-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: $link-blue;
+  cursor: pointer;
+}
+
+.button-text-yellow {
+  background: transparent;
+  border: none;
+  color: $base-yellow;
 }
 
 .facebook-login {

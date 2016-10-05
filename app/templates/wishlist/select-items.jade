@@ -1,0 +1,47 @@
+ion-modal-view.wishlist-page
+  ion-header-bar.bar.bar-header.bar-light.bar-wishlist-header(
+    align-title="center"
+  )
+    div(ng-if="wishlistsVm.showBackButton")
+      button.button.ion-chevron-left.button-clear(
+        ng-click="wishlistsVm.back()"
+      )
+    .title {{::("wishlist.titleSelectItems"|translate)}}
+    button.button.ion-close.button-clear(
+      ng-click="wishlistsVm.closeModal('items')"
+    )
+  ion-content(scroll="true")
+    slide-views
+      slide-view(number="1" active="true")
+        div(ng-init="wishlistsVm.getCategories()")
+          .grid-parent
+            button.grid-content(
+              ng-repeat="category in wishlistsVm.modalData.categories"
+              style="background-image: url('{{category.imagen|defaultImage}}')"
+              ng-click="wishlistsVm.getCategoryProviders(category.id)"
+            ).grid-100
+              .title {{category.titulo}}
+      slide-view(number="2")
+        slick(settings="wishlistsVm.slickConfig")
+          .slick-container(ng-repeat="provider in wishlistsVm.modalData.providers")
+            .slick-content(ng-click="wishlistsVm.getProductsFromProvider(provider)")
+              .provider-card
+                .img(style="background-image: url('{{provider.imagen|defaultImage:'../images/ionic.png'}}')")
+                .provider-card-footer
+                  .nombre {{provider.nombre_establecimiento}}
+                  .horario {{provider.horario}}
+      slide-view(number="3")
+        .provider-detail
+          .row
+            .col-25
+              img.format-image(src="{{wishlistsVm.modalData.provider.imagen|defaultImage:'../images/ionic.png'}}")
+            .col-75.details
+              .nombre {{wishlistsVm.modalData.provider.nombre_establecimiento}}
+              .descripcion {{wishlistsVm.modalData.provider.description}}
+              .horario {{wishlistsVm.modalData.provider.horario}}
+          .grid-parent
+            .content.grid-33(ng-repeat="product in wishlistsVm.modalData.products")
+                .product-detail
+                  img.format-image(src='{{product.image}}')
+                  .descripcion {{product.description}}
+                  .precio {{product.price}}

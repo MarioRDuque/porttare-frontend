@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<testsuite name="PhantomJS 1.9.8 (Linux 0.0.0)" package="" timestamp="2016-10-05T05:09:13" id="0" hostname="UbuntuGnome" tests="44" errors="0" failures="0" time="0.009">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
+  </properties>
+  <testcase name="CategoriesController on init categories should not be empty" time="0" classname="CategoriesController"/>
+  <testcase name="CategoryController on init category should be object" time="0.001" classname="CategoryController"/>
+  <testcase name="CategoryController on init providers should exist" time="0.001" classname="CategoryController"/>
+  <testcase name="ErrorController On init should get the error message from url" time="0" classname="ErrorController"/>
+  <testcase name="ErrorController When click on button should redirect to home" time="0.001" classname="ErrorController"/>
+  <testcase name="IntroController #listeners should call $localstorage and $state.go on startApp()" time="0.001" classname="IntroController"/>
+  <testcase name="IntroController #listeners should call $ionicSlideBoxDelegate.next on next()" time="0" classname="IntroController"/>
+  <testcase name="IntroController #listeners should call $ionicSlideBoxDelegate.previous on previous()" time="0" classname="IntroController"/>
+  <testcase name="IntroController #listeners should set slideIndex to the param of slideChanged()" time="0" classname="IntroController"/>
+  <testcase name="LoginController #login should call submitLogin on authService" time="0" classname="LoginController"/>
+  <testcase name="LoginController #login when the login is executed, if successful, should change state" time="0" classname="LoginController"/>
+  <testcase name="LoginController #login when the login is executed, if unsuccessful, should show a popup" time="0" classname="LoginController"/>
+  <testcase name="LoginController #logout should call signOut on authService" time="0" classname="LoginController"/>
+  <testcase name="LoginController #logout when the logout is executed, should show loading" time="0" classname="LoginController"/>
+  <testcase name="LoginController #logout when the logout is executed, if successful, should clear history" time="0" classname="LoginController"/>
+  <testcase name="LoginController #logout when the logout is executed, if successful, should change state" time="0.001" classname="LoginController"/>
+  <testcase name="LoginController #logout when the logout is executed, if unsuccessful, should show a popup" time="0" classname="LoginController"/>
+  <testcase name="MapController #geolocation map ionicLoading.show should be called" time="0" classname="MapController"/>
+  <testcase name="MapController #geolocation map when MapController is loaded if successful, should create map" time="0.001" classname="MapController"/>
+  <testcase name="MapController #geolocation map when MapController is loaded if exist an error, should show a popup" time="0.001" classname="MapController"/>
+  <testcase name="MapController #geolocation map when MapController is loaded if exist an error, should load a default location" time="0.001" classname="MapController"/>
+  <testcase name="PreController #load when the login with Facebook is executed, if unsuccessful, should show a popup" time="0" classname="PreController"/>
+  <testcase name="ProductsController on init query should be empty" time="0" classname="ProductsController"/>
+  <testcase name="ProductsController on init ProductsService response should be assigned to controller var" time="0" classname="ProductsController"/>
+  <testcase name="ProviderController Manage options should add/remove element to array" time="0" classname="ProviderController"/>
+  <testcase name="ProviderController Create provider ionicLoading.show should be called" time="0" classname="ProviderController"/>
+  <testcase name="ProviderController Create provider if successful, ionicLoading.hide should be called" time="0" classname="ProviderController"/>
+  <testcase name="ProviderController Create provider if successful, should change state" time="0" classname="ProviderController"/>
+  <testcase name="ProviderController Create provider if successful, should show a alert" time="0" classname="ProviderController"/>
+  <testcase name="ProviderController Create provider if unsuccessful, should show a alert" time="0" classname="ProviderController"/>
+  <testcase name="ProviderController Create provider if unsuccessful by validation error, should create a object" time="0" classname="ProviderController"/>
+  <testcase name="RegisterController #register ionicLoading.show should be called" time="0" classname="RegisterController"/>
+  <testcase name="RegisterController #register when the register is executed, if successful, should change state" time="0" classname="RegisterController"/>
+  <testcase name="ResetController #reset_password ionicLoading.show should be called" time="0" classname="ResetController"/>
+  <testcase name="ResetController #reset_password #resetPassword should call resetPassword on authService" time="0.001" classname="ResetController"/>
+  <testcase name="ResetController #reset_password #resetPassword when restore password is selected, if successful, should show a message" time="0" classname="ResetController"/>
+  <testcase name="ResetController #reset_password #resetPassword when restore password is selected, if unsuccessful, should show an alert" time="0" classname="ResetController"/>
+  <testcase name="ResetController #reset_password when reset password is executed, if successful, should change state" time="0" classname="ResetController"/>
+  <testcase name="ResetController #reset_password when reset password is executed, if unsuccessful, should show a popup" time="0" classname="ResetController"/>
+  <testcase name="SiteController #listeners should call $ionicLoading.show in stateChangeStart" time="0" classname="SiteController"/>
+  <testcase name="SiteController #listeners should call $ionicLoading.hode in stateChangeSuccess" time="0" classname="SiteController"/>
+  <testcase name="SiteController #listeners should call $ionicLoading.hode in stateChangeError" time="0" classname="SiteController"/>
+  <testcase name="SiteController without user should call $ionicLoading.show in stateChangeStart to login and no user" time="0" classname="SiteController"/>
+  <testcase name="Filter: defaultImage should assign a default image" time="0" classname="Filter: defaultImage"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>
