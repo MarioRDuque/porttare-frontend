@@ -16,7 +16,7 @@
                                 APP) {
     var wishlistsVm = this;
     wishlistsVm.query = '';
-    wishlistsVm.wishlists = data;
+    wishlistsVm.wishlists = data.customer_wishlists; //jshint ignore:line
     wishlistsVm.wishlist = {};
     wishlistsVm.closeModal = closeModal;
     wishlistsVm.showEditModal = showEditModal;
@@ -107,17 +107,17 @@
           price: '$2,00',
           description: 'Cerveza 750ml'
         }, {
-          id: 1,
+          id: 2,
           image: '../images/bg.png',
           price: '$2,00',
           description: 'Cerveza 750ml'
         }, {
-          id: 1,
+          id: 3,
           image: '../images/bg.png',
           price: '$2,00',
           description: 'Cerveza 750ml'
         }, {
-          id: 1,
+          id: 4,
           image: '../images/bg.png',
           price: '$2,00',
           description: 'Cerveza 750ml'
