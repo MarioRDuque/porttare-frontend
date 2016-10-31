@@ -18,68 +18,72 @@
       $provide.value('APP', {
         defaultSlickConfig: {}
       });
-      $provide.factory('ModalService', function(){
+      $provide.factory('ModalService', function () {
         return {
           showModal: sinon.stub(),
           closeModal: sinon.stub()
         };
       });
-      $provide.factory('CategoriesService', function($q){
+      $provide.factory('CategoriesService', function ($q) {
         return {
-          getCategoryProviders: function(){
+          getCategoryProviders: function () {
             deferGetCategoryProviders = $q.defer();
             return deferGetCategoryProviders.promise;
           },
-          getCategories: function(){
+          getCategories: function () {
             deferGetCategories = $q.defer();
             return deferGetCategories.promise;
           }
         };
       });
-      $provide.factory('CategoryService', function($q){
+      $provide.factory('CategoryService', function ($q) {
         return {};
       });
-      $provide.factory('SlideViewsService', function(){
+      $provide.factory('SlideViewsService', function () {
         return {
-          next: function(){},
-          back: function(){},
-          goTo: function(){}
+          next: function () {},
+          back: function () {},
+          goTo: function () {}
         };
       });
-      $provide.factory('WishlistsService', function(){
+      $provide.factory('WishlistsService', function () {
         return {};
       });
     }));
 
     beforeEach(inject(function (_$rootScope_,
-                                _$controller_,
-                                data,
-                                APP,
-                                ModalService,
-                                CategoriesService,
-                                CategoryService,
-                                SlideViewsService,
-                                WishlistsService) {
-        $ionicLoading     = { show: sinon.stub(), hide: sinon.stub()};
-        $ionicScrollDelegate = {scrollTop: sinon.stub()};
-        ModalServiceMock = ModalService;
-        $scope = _$rootScope_.$new();
-        $controller = _$controller_;
-        dependencies = {
-          data: data,
-          APP: APP,
-          ModalService: ModalServiceMock,
-          CategoriesService: CategoriesService,
-          CategoryService: CategoryService,
-          SlideViewsService: SlideViewsService,
-          $ionicLoading: $ionicLoading,
-          $ionicScrollDelegate: $ionicScrollDelegate,
-          $scope: $scope,
-          WishlistsService: WishlistsService
-        };
-        ctrl = $controller('WishlistsController', dependencies);
-      })
-    );
+      _$controller_,
+      data,
+      APP,
+      ModalService,
+      CategoriesService,
+      CategoryService,
+      SlideViewsService,
+      WishlistsService) {
+      $ionicLoading = {
+        show: sinon.stub(),
+        hide: sinon.stub()
+      };
+      $ionicScrollDelegate = {
+        scrollTop: sinon.stub()
+      };
+      ModalServiceMock = ModalService;
+      $scope = _$rootScope_.$new();
+      $controller = _$controller_;
+      dependencies = {
+        data: data,
+        APP: APP,
+        ModalService: ModalServiceMock,
+        CategoriesService: CategoriesService,
+        CategoryService: CategoryService,
+        SlideViewsService: SlideViewsService,
+        $ionicLoading: $ionicLoading,
+        $ionicScrollDelegate: $ionicScrollDelegate,
+        $scope: $scope,
+        WishlistsService: WishlistsService
+      };
+      ctrl = $controller('WishlistsController', dependencies);
+    }));
 
     describe('Modal events', function () {
       it('Should send the right params', function () {
@@ -121,7 +125,7 @@
         };
         sinon.stub(ctrl, 'showModal');
         ctrl.showEditModal(wlist);
-        expect(ctrl.wishlist).to.equal(wlist);
+        expect(ctrl.wishlist.id).to.deep.equal(wlist.id);
         sinon.assert.calledWith(ctrl.showModal, 'main');
       });
 
@@ -130,7 +134,7 @@
           ctrl.getCategories();
           sinon.assert.calledOnce($ionicLoading.show);
         });
-        it.only('getCategories: Success', function () {
+        it('getCategories: Success', function () {
           var res = {
             data: {
               provider_categories: []

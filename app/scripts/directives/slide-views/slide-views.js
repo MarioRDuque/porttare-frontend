@@ -60,7 +60,8 @@
     }
 
     function next() {
-      if (slideCurrentIndex < (slides.length - 1)) {
+      var lastIndex = slides.length - 1;
+      if (slideCurrentIndex < lastIndex){
         slides[slideCurrentIndex].selected = false;
         slides[slideCurrentIndex + 1].selected = true;
         slideCurrentIndex++;

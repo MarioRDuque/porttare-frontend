@@ -69,6 +69,7 @@
     function showEditModal(wlist, index) {
       currentIndex = index;
       wishlistsVm.wishlist = angular.copy(wlist);
+      wishlistsVm.wishlist.entregar_en = new Date(wlist.entregar_en) // jshint ignore:line
       wishlistsVm.showModal(wishlistsVm.modalSettings.main.id);
     }
 
@@ -137,6 +138,9 @@
     }
 
     function processWishlist(id) {
+      $ionicLoading.show({
+        template: '{{::("globals.loading"|translate)}}'
+      });
       if (id) {
         updateWishlist();
       } else {
@@ -145,10 +149,14 @@
     }
 
     function removeOrCancel(id) {
+      $ionicLoading.show({
+        template: '{{::("globals.loading"|translate)}}'
+      });
       if (id) {
         removeWishlist(id);
       } else {
-        closeModal(wishlistsVm.modalSettings.items.id);
+        $ionicLoading.hide();
+        closeModal(wishlistsVm.modalSettings.main.id);
       }
     }
 
@@ -156,9 +164,11 @@
       WishlistsService.removeWishlist(id)
         .then(function success() {
           wishlistsVm.wishlists.splice(currentIndex, 1);
+          $ionicLoading.hide();
           closeModal(wishlistsVm.modalSettings.main.id);
         }, function error(res) {
           wishlistsVm.messages = res.errors;
+          $ionicLoading.hide();
         });
     }
 
@@ -166,9 +176,11 @@
       WishlistsService.updateWishlist(wishlistsVm.wishlist)
         .then(function success(res) {
           wishlistsVm.wishlists[currentIndex] = res.customer_wishlist; //jshint ignore: line
+          $ionicLoading.hide();
           closeModal(wishlistsVm.modalSettings.main.id);
         }, function error(res) {
           wishlistsVm.messages = res.errors;
+          $ionicLoading.hide();
         });
     }
 
@@ -176,9 +188,11 @@
       WishlistsService.createWishlist(wishlistsVm.wishlist)
         .then(function success(res) {
           wishlistsVm.wishlists.push(res.customer_wishlist); //jshint ignore: line
+          $ionicLoading.hide();
           closeModal(wishlistsVm.modalSettings.main.id);
         }, function error(res) {
           wishlistsVm.messages = res.errors;
+          $ionicLoading.hide();
         });
     }
   }
