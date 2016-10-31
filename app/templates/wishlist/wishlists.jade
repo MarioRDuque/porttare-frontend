@@ -14,7 +14,7 @@ ion-view(
         )
     .row.footer-wishlist-container
       button.button-secondary-yellow(
-        ng-click="wishlistsVm.showModal('main')"
+        ng-click="wishlistsVm.showModal(wishlistsVm.modalSettings.main.id)"
       ) {{::("wishlist.new"|translate)}}
     .row.list-header
       .col.list-title {{::("wishlist.id"|translate)}}
@@ -27,5 +27,5 @@ ion-view(
       .col.col-50.list-item {{ wlist.nombre }}
       .col.col-33.col-wishlist-edit
         button(
-          ng-click="wishlistsVm.showEditModal(wlist)"
+          ng-click="wishlistsVm.showEditModal(wlist, $index)"
         ).button-link {{::("wishlist.edit"|translate)}}

@@ -19,6 +19,7 @@
     itemsVm.deleteItem = deleteItem;
     itemsVm.showActionSheet = showActionSheet;
     itemsVm.query = '';
+    var modalId = 'itemModal';
     var selectedItemIndex;
 
     getItems();
@@ -101,6 +102,7 @@
 
     function showNewModal() {
       ModalService.showModal({
+        id: modalId,
         parentScope: $scope,
         fromTemplateUrl: 'templates/item/new-edit.html'
       });
@@ -112,7 +114,7 @@
     }
 
     function closeModal() {
-      ModalService.closeModal();
+      ModalService.closeModal(modalId);
       selectedItemIndex = null;
       itemsVm.item = null;
       itemsVm.messages = {};

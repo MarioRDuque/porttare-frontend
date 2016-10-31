@@ -8,7 +8,7 @@ ion-modal-view.wishlist-page
       )
     .title {{::("wishlist.titleSelectItems"|translate)}}
     button.button.ion-close.button-clear(
-      ng-click="wishlistsVm.closeModal('items')"
+      ng-click="wishlistsVm.closeModal(wishlistsVm.modalSettings.items.id)"
     )
   ion-content(scroll="true")
     slide-views

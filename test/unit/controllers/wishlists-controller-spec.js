@@ -46,6 +46,9 @@
           goTo: function(){}
         };
       });
+      $provide.factory('WishlistsService', function(){
+        return {};
+      });
     }));
 
     beforeEach(inject(function (_$rootScope_,
@@ -55,7 +58,8 @@
                                 ModalService,
                                 CategoriesService,
                                 CategoryService,
-                                SlideViewsService) {
+                                SlideViewsService,
+                                WishlistsService) {
         $ionicLoading     = { show: sinon.stub(), hide: sinon.stub()};
         $ionicScrollDelegate = {scrollTop: sinon.stub()};
         ModalServiceMock = ModalService;
@@ -70,7 +74,8 @@
           SlideViewsService: SlideViewsService,
           $ionicLoading: $ionicLoading,
           $ionicScrollDelegate: $ionicScrollDelegate,
-          $scope: $scope
+          $scope: $scope,
+          WishlistsService: WishlistsService
         };
         ctrl = $controller('WishlistsController', dependencies);
       })

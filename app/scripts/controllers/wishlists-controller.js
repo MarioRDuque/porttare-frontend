@@ -13,11 +13,15 @@
                                 CategoriesService,
                                 CategoryService,
                                 SlideViewsService,
+                                WishlistsService,
                                 APP) {
     var wishlistsVm = this;
+    var currentIndex = null;
     wishlistsVm.query = '';
     wishlistsVm.wishlists = data.customer_wishlists; //jshint ignore:line
-    wishlistsVm.wishlist = {};
+    wishlistsVm.wishlist = {
+      provider_items_ids: [] // jshint ignore:line
+    };
     wishlistsVm.closeModal = closeModal;
     wishlistsVm.showEditModal = showEditModal;
     wishlistsVm.showModal = showModal;
@@ -27,6 +31,9 @@
     wishlistsVm.back = back;
     wishlistsVm.showBackButton = false;
     wishlistsVm.slickConfig = APP.defaultSlickConfig;
+    wishlistsVm.removeOrCancel = removeOrCancel;
+    wishlistsVm.processWishlist = processWishlist;
+    wishlistsVm.messages = {};
     wishlistsVm.modalData = {
       categories: [],
       category: {},
@@ -56,11 +63,13 @@
       wishlistsVm.query = '';
       wishlistsVm.wishlist = null;
       wishlistsVm.messages = {};
+      currentIndex = null;
     }
 
-    function showEditModal(wlist) {
-      wishlistsVm.wishlist = wlist;
-      wishlistsVm.showModal('main');
+    function showEditModal(wlist, index) {
+      currentIndex = index;
+      wishlistsVm.wishlist = angular.copy(wlist);
+      wishlistsVm.showModal(wishlistsVm.modalSettings.main.id);
     }
 
     function getCategories() {
@@ -86,8 +95,8 @@
           SlideViewsService.next();
           wishlistsVm.showBackButton = true;
           $ionicScrollDelegate.scrollTop();
-          wishlistsVm.modalData.category = res.data.provider_category;//jshint ignore:line
-          wishlistsVm.modalData.providers = res.data.provider_category.provider_profiles;//jshint ignore:line
+          wishlistsVm.modalData.category = res.data.provider_category; //jshint ignore:line
+          wishlistsVm.modalData.providers = res.data.provider_category.provider_profiles; //jshint ignore:line
           $ionicLoading.hide();
         }, function error() {
           $ionicLoading.hide();
@@ -100,33 +109,77 @@
       $ionicScrollDelegate.scrollTop();
 
       //Fixtures
-      wishlistsVm.modalData.products = [
-        {
-          id: 1,
-          image: '../images/bg.png',
-          price: '$2,00',
-          description: 'Cerveza 750ml'
-        }, {
-          id: 2,
-          image: '../images/bg.png',
-          price: '$2,00',
-          description: 'Cerveza 750ml'
-        }, {
-          id: 3,
-          image: '../images/bg.png',
-          price: '$2,00',
-          description: 'Cerveza 750ml'
-        }, {
-          id: 4,
-          image: '../images/bg.png',
-          price: '$2,00',
-          description: 'Cerveza 750ml'
-        }
-      ];
+      wishlistsVm.modalData.products = [{
+        id: 1,
+        image: '../images/bg.png',
+        price: '$2,00',
+        description: 'Cerveza 750ml'
+      }, {
+        id: 2,
+        image: '../images/bg.png',
+        price: '$2,00',
+        description: 'Cerveza 750ml'
+      }, {
+        id: 3,
+        image: '../images/bg.png',
+        price: '$2,00',
+        description: 'Cerveza 750ml'
+      }, {
+        id: 4,
+        image: '../images/bg.png',
+        price: '$2,00',
+        description: 'Cerveza 750ml'
+      }];
     }
 
     function back() {
       SlideViewsService.back();
+    }
+
+    function processWishlist(id) {
+      if (id) {
+        updateWishlist();
+      } else {
+        createWishlist();
+      }
+    }
+
+    function removeOrCancel(id) {
+      if (id) {
+        removeWishlist(id);
+      } else {
+        closeModal(wishlistsVm.modalSettings.items.id);
+      }
+    }
+
+    function removeWishlist(id) {
+      WishlistsService.removeWishlist(id)
+        .then(function success() {
+          wishlistsVm.wishlists.splice(currentIndex, 1);
+          closeModal(wishlistsVm.modalSettings.main.id);
+        }, function error(res) {
+          wishlistsVm.messages = res.errors;
+        });
+    }
+
+    function updateWishlist() {
+      WishlistsService.updateWishlist(wishlistsVm.wishlist)
+        .then(function success(res) {
+          wishlistsVm.wishlists[currentIndex] = res.customer_wishlist; //jshint ignore: line
+          closeModal(wishlistsVm.modalSettings.main.id);
+        }, function error(res) {
+          wishlistsVm.messages = res.errors;
+        });
+    }
+
+    function createWishlist() {
+      WishlistsService.createWishlist(wishlistsVm.wishlist)
+        .then(function success(res) {
+          wishlistsVm.wishlists.push(res.customer_wishlist); //jshint ignore: line
+          closeModal(wishlistsVm.modalSettings.main.id);
+        }, function error(res) {
+          wishlistsVm.messages = res.errors;
+        });
     }
   }
 })();

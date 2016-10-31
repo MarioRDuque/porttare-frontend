@@ -6,7 +6,7 @@ ion-modal-view.wishlist-page
     div(ng-show="wishlistsVm.wishlist.id").title {{::("wishlist.titleEdit"|translate)}}
     div.buttons
       button.button.ion-close.button-clear(
-        ng-click="wishlistsVm.closeModal('main')"
+        ng-click="wishlistsVm.closeModal(wishlistsVm.modalSettings.main.id)"
       )
   ion-content.resource-form
     form(
@@ -20,19 +20,30 @@ ion-modal-view.wishlist-page
             type="text"
             ng-model="wishlistsVm.wishlist.nombre"
           )
+        show-error(array-messages="wishlistsVm.messages.nombre")
+
         label.item.item-input.item-stacked-label
           span.input-label {{::("wishlist.items"|translate)}}
           .row-wishlist-action
             button(
-              ng-click="wishlistsVm.showModal('items')"
+              ng-click="wishlistsVm.showModal(wishlistsVm.modalSettings.items.id)"
             ).button-text-yellow {{::("wishlist.buttonAddItems"|translate)}}
-        show-error(array-messages="")
+        show-error(array-messages="wishlistsVm.messages.provider_items_ids")
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("wishlist.dateDelivery"|translate)}}
           .row-wishlist-action
-            button.button-text-yellow {{::("wishlist.buttonAddDate"|translate)}}
-        show-error(array-messages="")
+            button(
+              ion-datetime-picker
+              date
+              ng-model='wishlistsVm.wishlist.entregar_en'
+            ).button-text-yellow
+              span(ng-if="!wishlistsVm.wishlist.entregar_en")
+                | {{::("wishlist.buttonAddDate"|translate)}}
+              span(ng-if="wishlistsVm.wishlist.entregar_en")
+                | {{wishlistsVm.wishlist.entregar_en | date: "medium"}}
+
+        show-error(array-messages="wishlistsVm.messages.entregar_en")
 
       .bar.bar-footer.footer-wishlist-container
         button.button-secondary-yellow(
@@ -41,5 +52,5 @@ ion-modal-view.wishlist-page
         ) {{::("wishlist.save"|translate)}}
         button.button-secondary-red(
           type="button"
-          ng-click="wishlistsVm.removeWishlist()"
+          ng-click="wishlistsVm.removeOrCancel(wishlistsVm.wishlist.id)"
         ) {{::("wishlist.remove"|translate)}}
