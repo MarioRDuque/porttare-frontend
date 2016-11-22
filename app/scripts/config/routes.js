@@ -264,6 +264,30 @@ function routes($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  .state('provider.dispatchers', {
+    url: '/dispatchers',
+    abstract: true
+  })
+  .state('provider.dispatchers.index', {
+    url: '/',
+    views: {
+      'menuContent@provider': {
+        templateUrl: 'templates/dispatcher/dispatchers.html',
+        controller: 'DispatchersController',
+        controllerAs: 'dispatchersVm'
+      }
+    }
+  })
+  .state('provider.dispatchers.detail', {
+    url: '/:id',
+    views: {
+      'menuContent@provider': {
+        templateUrl: 'templates/dispatcher/detail.html',
+        controller: 'DispatcherDetailController',
+        controllerAs: 'dispatchersVm',
+      }
+    }
+  })
   .state('app.courier', {
     url: '/courier',
     abstract: true

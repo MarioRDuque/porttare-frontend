@@ -8,8 +8,9 @@
   function CommonService($http, ENV) {
 
     var service = {
-      editObject: editObject,
-      getObjects: getObjects
+      getObjects: getObjects,
+      newObject: newObject,
+      editObject: editObject
     };
 
     return service;
@@ -24,7 +25,19 @@
         });
     }
 
+    function newObject(data, url) {
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + url,
+        data: data
+      })
+        .then(function success(resp){
+          return resp.data;
+        });
+    }
+
     function editObject(data, url) {
+      console.log(data, url)
       return $http({
         method: 'PUT',
         url: ENV.apiHost + url + data.id,
