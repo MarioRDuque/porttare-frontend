@@ -205,6 +205,7 @@
         officeDeleteClose: 'Cerrar establecimiento',
         officeSuccessDelete: 'Local eliminado',
         officeSuccess: 'Correctamente',
+        officeDeleteInProgress: 'Tarea en progreso',
         mon: 'Lunes',
         tue: 'Martes',
         wed: 'Miercoles',
