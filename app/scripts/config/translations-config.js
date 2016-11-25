@@ -41,7 +41,8 @@
           coupon: 'Cuponera',
           payments: 'Pagos',
           provider: 'Proveedor',
-          cart: 'Mi carro'
+          cart: 'Mi carro',
+          billingAddresses : 'Direcciones de facturación'
         },
         provider: {
           orders: 'Pedidos',
@@ -228,6 +229,11 @@
       },
       cart: {
         successfullyAdded: 'Ítem agregado exitosamente'
+      },
+      billingAddresses: {
+        billingAddresses: 'Dirección de facturación',
+        newBillingAddresses: 'Nueva dirección de facturación',
+        anyBillingAddresses: 'No dispone de ninguna dirección de facturación.'
       }
     });
 
